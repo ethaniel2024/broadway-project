@@ -1,0 +1,9 @@
+site_name: Broadway Insights
+site_url: https://example.github.io/broadway-insights/
+theme:
+  name: mkdocs
+nav:
+  - Home: index.md
+  - Analysis Summary: analysis.md
+  - Tutorial: tutorial.md
+  - Function Reference: reference.md

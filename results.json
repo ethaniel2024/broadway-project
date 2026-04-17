@@ -1,0 +1,32 @@
+{
+    "tests": [
+        {
+            "score": 0,
+            "max_score": 0,
+            "name": "test_analysis.py::test_show_summary_has_one_row_per_show",
+            "output": "\n",
+            "visibility": "visible"
+        },
+        {
+            "score": 0,
+            "max_score": 0,
+            "name": "test_analysis.py::test_analysis_outputs_are_numeric",
+            "output": "\n",
+            "visibility": "visible"
+        },
+        {
+            "score": 0,
+            "max_score": 0,
+            "name": "test_data.py::test_clean_broadway_data_creates_expected_columns",
+            "output": "\n",
+            "visibility": "visible"
+        },
+        {
+            "score": 0,
+            "max_score": 0,
+            "name": "test_data.py::test_seat_split_matches_known_first_row",
+            "output": "\n",
+            "visibility": "visible"
+        }
+    ]
+}
