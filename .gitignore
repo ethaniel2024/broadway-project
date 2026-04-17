@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -32,3 +33,6 @@ htmlcov/
 
 # Streamlit secrets
 .streamlit/secrets.toml
+=======
+
+>>>>>>> 3b886e14e76eb186f1773f6688469adcfd0cab3a
