@@ -1,6 +1,6 @@
-"""Data loading and cleaning utilities for the Broadway dataset."""
+"""Data loading and cleaning utilities for the Broadway dataset.
 
-"""This module handles data loading and cleaning for the broadway_insights package. 
+This module handles data loading and cleaning for the broadway_insights package. 
 load_raw_data reads the bundled (or a user-supplied) Broadway CSV, and clean_broadway_data transforms it into an analysis-ready DataFrame —
 renaming columns, parsing currency and date fields, splitting concatenated ticket-price, performance/preview, and seat-count strings back 
 into separate numeric columns, and deriving run-window metrics (start, end, weeks tracked, run length in days) per show. A key challenge 
