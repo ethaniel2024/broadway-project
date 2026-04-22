@@ -1,3 +1,4 @@
+"""Tests to check package analysis functions"""
 from broadway_insights import (
     analyze_award_vs_theater_size,
     analyze_award_weekly_revenue,
