@@ -1,5 +1,13 @@
 """Data loading and cleaning utilities for the Broadway dataset."""
 
+"""This module handles data loading and cleaning for the broadway_insights package. 
+load_raw_data reads the bundled (or a user-supplied) Broadway CSV, and clean_broadway_data transforms it into an analysis-ready DataFrame —
+renaming columns, parsing currency and date fields, splitting concatenated ticket-price, performance/preview, and seat-count strings back 
+into separate numeric columns, and deriving run-window metrics (start, end, weeks tracked, run length in days) per show. A key challenge 
+is the _split_seat_counts helper, which recovers seats_sold and seats_in_theatre from a single concatenated digit string by testing every
+possible split point and selecting the partition whose inferred capacity percentage best matches the reported value. load_clean_data wraps
+both steps into a single convenience call."""
+
 from __future__ import annotations
 
 from importlib.resources import files
