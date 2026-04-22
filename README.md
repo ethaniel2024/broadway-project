@@ -8,6 +8,12 @@
 - Do larger theaters tend to produce higher weekly gross revenue?
 - Are Tony-flagged shows placed in larger theaters?
 
+## Live Project Links
+
+- **GitHub Pages Website:** https://ethaniel2024.github.io/broadway-project/
+- **Streamlit Dashboard:** https://broadway-project-stat386.streamlit.app/
+- **GitHub Repository:** https://github.com/ethaniel2024/broadway-project
+
 ## Project structure
 
 ```text
