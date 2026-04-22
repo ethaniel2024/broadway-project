@@ -8,14 +8,16 @@ Interpretation notes at the bottom remind users that the Tony flag represents no
 import pandas as pd
 import streamlit as st
 
-from broadway_insights import (
+from broadway_insights.analysis import (
     analyze_award_vs_theater_size,
     analyze_award_weekly_revenue,
     analyze_theater_size_vs_gross,
+    summarize_show_runs,
+)
+from broadway_insights.data import load_clean_data
+from broadway_insights.viz import (
     build_revenue_scatter,
     build_run_length_boxplot,
-    load_clean_data,
-    summarize_show_runs,
 )
 
 st.set_page_config(page_title="Broadway Insights", layout="wide")
