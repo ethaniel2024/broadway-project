@@ -10,11 +10,8 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [
-<<<<<<< HEAD
-  { name = "Ethan Nelson" }
-=======
-  { name = "Ethan Nelson & Jessie Olsen" }
->>>>>>> 3b886e14e76eb186f1773f6688469adcfd0cab3a
+  { name = "Ethan Nelson" },
+  { name = "Jessie Olsen" }
 ]
 dependencies = [
   "numpy>=1.24",
