@@ -1,4 +1,10 @@
 """Tests to check package analysis functions"""
+
+"""This test module validates the aggregation and analysis functions in broadway_insights. 
+The first test confirms that summarize_show_runs produces exactly one row per unique show, 
+and the second verifies that all three analysis functions (analyze_award_weekly_revenue, analyze_theater_size_vs_gross, analyze_award_vs_theater_size) 
+return non-empty dictionaries containing only float values."""
+
 from broadway_insights import (
     analyze_award_vs_theater_size,
     analyze_award_weekly_revenue,
