@@ -1,12 +1,13 @@
-"""Analysis helpers for the Broadway research questions."""
+"""Analysis helpers for the Broadway research questions.
 
-"""This module provides the core analysis functions for the Broadway Insights package.
-A summarize_show_runs helper aggregates the weekly dataset to one row per show with revenue, 
-capacity, and run-length metrics. Three research-question functions build on it: analyze_award_weekly_revenue compares 
-tracked run length and weekly revenue by Tony-nomination flag, analyze_theater_size_vs_gross computes weekly and show-level 
-correlations plus a linear trend between theater size and gross, and analyze_award_vs_theater_size compares average 
-theater capacity across the two groups. A private _two_group_summary utility standardizes the True/False group comparisons,
-and _safe_corr guards against degenerate single-value series."""
+This module provides the core analysis functions for the Broadway Insights package.
+A summarize_show_runs helper aggregates the weekly dataset to one row per show with revenue,
+capacity, and run-length metrics. Three research-question functions build on it:
+analyze_award_weekly_revenue compares tracked run length and weekly revenue by Tony-nomination flag,
+analyze_theater_size_vs_gross computes weekly and show-level correlations plus a linear trend between
+theater size and gross, and analyze_award_vs_theater_size compares average theater capacity across
+the two groups.
+"""
 
 from __future__ import annotations
 
