@@ -1,3 +1,10 @@
+"""This Streamlit app serves as the interactive dashboard for the Broadway Insights project.
+It loads the cleaned Broadway dataset via the broadway_insights package, caches it for performance, and exposes sidebar filters for Tony-nomination status and theater seat capacity.
+The main view displays key metrics (row count, show count, seats-vs-gross correlation) and research-question snapshots (run-length gap, revenue per added seat, theater-size gap)
+as headline cards, followed by an interactive Plotly scatterplot of theater size versus weekly gross and a side-by-side layout pairing a run-length boxplot with a top-15 revenue table.
+Interpretation notes at the bottom remind users that the Tony flag represents nominations rather than wins and that run length reflects tracked weeks in the dataset, not a show's full Broadway history.
+"""
+
 from __future__ import annotations
 
 import pandas as pd
@@ -12,13 +19,6 @@ from broadway_insights import (
     load_clean_data,
     summarize_show_runs,
 )
-
-"""This Streamlit app serves as the interactive dashboard for the Broadway Insights project.
-It loads the cleaned Broadway dataset via the broadway_insights package, caches it for performance, and exposes sidebar filters for Tony-nomination status and theater seat capacity. 
-The main view displays key metrics (row count, show count, seats-vs-gross correlation) and research-question snapshots (run-length gap, revenue per added seat, theater-size gap) 
-as headline cards, followed by an interactive Plotly scatterplot of theater size versus weekly gross and a side-by-side layout pairing a run-length boxplot with a top-15 revenue table.
-Interpretation notes at the bottom remind users that the Tony flag represents nominations rather than wins and that run length reflects tracked weeks in the dataset, not a show's full Broadway history."""
-
 
 st.set_page_config(page_title="Broadway Insights", layout="wide")
 
