@@ -1,3 +1,4 @@
+"""Tests to check the package data cleaning functions work correctly"""
 from broadway_insights import clean_broadway_data, load_raw_data
 
 
