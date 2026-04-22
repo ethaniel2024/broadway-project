@@ -5,8 +5,6 @@ as headline cards, followed by an interactive Plotly scatterplot of theater size
 Interpretation notes at the bottom remind users that the Tony flag represents nominations rather than wins and that run length reflects tracked weeks in the dataset, not a show's full Broadway history.
 """
 
-from __future__ import annotations
-
 import pandas as pd
 import streamlit as st
 
