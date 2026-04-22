@@ -1,6 +1,6 @@
-"""Plot helpers for the Broadway analysis dashboard."""
+"""Plot helpers for the Broadway analysis dashboard.
 
-"""This module provides the two Plotly visualization functions for the Broadway Insights dashboard.
+This module provides the two Plotly visualization functions for the Broadway Insights dashboard.
 build_revenue_scatter produces an interactive scatterplot of theater size versus weekly gross — 
 colored by Tony-nomination flag and sized by average ticket price — while build_run_length_boxplot 
 aggregates to show-level data and renders a boxplot comparing tracked run lengths between Tony-flagged 
