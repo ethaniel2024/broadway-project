@@ -13,6 +13,7 @@
 - **GitHub Pages Website:** https://ethaniel2024.github.io/broadway-project/
 - **Streamlit Dashboard:** https://broadway-project-stat386.streamlit.app/
 - **GitHub Repository:** https://github.com/ethaniel2024/broadway-project
+- **Data Acquisition Repository:** https://github.com/jessieaolsen-sys/data-aquistion-code
 
 ## Project structure
 
@@ -68,6 +69,15 @@ The repository includes a GitHub Pages-ready MkDocs site:
 - User-facing reference: `docs/reference.md`
 - Tutorial: `docs/tutorial.md`
 - Deployment workflow: `.github/workflows/docs.yml`
+
+## Data acquisition and reproducibility
+
+The final analysis dataset used in this project is stored in `data/raw/Broadway_Data.csv`. 
+Because this is a custom assembled dataset, the reproducible data-acquisition code is documented in a companion repository:
+
+- **Data acquisition code:** https://github.com/jessieaolsen-sys/data-aquistion-code
+
+That companion repository shows how the source data was collected and assembled, while this repository contains the installable package, cleaned workflow, technical report, documentation, and deployed Streamlit dashboard.
 
 ## Data note
 
