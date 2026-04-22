@@ -1,7 +1,9 @@
 site_name: Broadway Insights
 site_url: https://ethaniel2024.github.io/broadway-project/
+
 theme:
   name: mkdocs
+
 nav:
   - Home: index.md
   - Analysis Summary: analysis.md
