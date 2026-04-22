@@ -1,4 +1,12 @@
 """Tests to check the package data cleaning functions work correctly"""
+
+"""This Python test module validates the clean_broadway_data function from the broadway_insights package. 
+The first test loads the raw Broadway CSV, runs it through the cleaning pipeline, and asserts that all expected derived columns 
+(e.g., weekly_gross, seats_sold, seats_in_theatre, tony_nominated, capacity_pct) are present in the output. 
+The second test verifies the seat-splitting logic against the first row of cleaned data (the show 1776),
+confirming that seats_sold and seats_in_theatre are positive and that the inferred capacity percentage — computed from those values 
+and total staged performances — matches the pipeline's capacity_pct column within a tight tolerance of 0.2 percentage points."""
+
 from broadway_insights import clean_broadway_data, load_raw_data
 
 
