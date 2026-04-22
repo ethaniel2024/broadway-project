@@ -1,0 +1,110 @@
+---
+title: "Broadway Insights: Technical Report"
+subtitle: "Weekly Grosses, Run Lengths, and Theater Capacity Analysis"
+author: "Jessie Olsen & Ethan Nelson"
+date: "April 2026"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    theme: cosmo
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
+---
+
+## Introduction
+
+Broadway Insights is a compact analysis package and interactive dashboard designed for studying Broadway weekly grosses, tracked run lengths, and theater capacity. Built in Python, the project provides an end-to-end pipeline that transforms a raw, sometimes malformed Broadway dataset into a clean, analyzable resource. It cleans malformed source columns, aggregates weekly rows into show-level summaries, and computes interpretable comparisons tied to a focused set of research questions. An accompanying Streamlit dashboard enables interactive exploration of the data and findings.
+
+The project is organized around three research questions that probe the relationship between award prestige and commercial performance on Broadway:
+
+1.  Do Tony-flagged shows run longer in the tracked dataset?
+2.  Do larger theaters have higher weekly gross revenue?
+3.  Do Tony-flagged shows appear in larger theaters?
+
+Together, these questions allow the package to surface whether award-related prestige, theater scale, and revenue tend to move together in the Broadway market represented by the dataset. This report documents the dataset, methodology, findings, limitations, and the full programmatic API provided by the package.
+
+## Dataset Description
+
+The Broadway Insights dataset consists of weekly performance records for Broadway shows. After the cleaning pipeline is applied, the dataset contains 4,329 rows (weekly observations) and 144 distinct Broadway shows.
+
+Rows without a show name were removed during cleaning because they could not support show-level analysis. The cleaning pipeline addresses malformed fields in the source CSV and derives analysis-ready columns such as seat counts and run metrics, ensuring that all downstream aggregation and comparison steps operate on consistent, well-formed data.
+
+## Research Questions and Methodology
+
+The analysis is structured around the three research questions:
+
+1.  Do Tony-flagged shows run longer in the tracked dataset?
+2.  Do larger theaters have higher weekly gross revenue?
+3.  Do Tony-flagged shows appear in larger theaters?
+
+To gather data that would answer these questions, two different sources were web scraped. Firstly, the weekly revenue, theater size, and runtime for all Broadway shows in the years 2022-2024 were scraped from Playbill.com on the Broadway Grosses page. A data frame was created by looping through the urls corresponding to each week in that time range and scraping the grosses table for each week. Secondly, to determine the award status of each musical, a Wikipedia page containing all Tony award nominations was scraped. This site contained one table with all nominations that was scraped to create a data frame of each musical and a Tony-nominated flag. The two data frames were then joined together, using show name as the key, to create our final raw dataset.
+
+All further steps taken with the dataset are outlined and reproducible in the python package. First, the package cleans malformed source columns and derives analysis-ready fields, including seat counts and run metrics. Weekly records are then aggregated to show-level summaries, producing one row per show with metrics for run window, revenue, tickets, and theater size. The TonyNominatedMusical field in the dataset is used as the available award-related signal to partition shows into Tony-flagged and non-flagged groups.
+
+For questions 1 and 3, the package computes group means and differences to compare Tony-flagged and non-flagged shows on tracked run length and theater size, respectively. For question 2, correlation analysis (at both the weekly and show levels) and a simple linear trend estimate are used to characterize the relationship between theater size and weekly gross revenue.
+
+## Findings
+
+### Do Tony-Flagged Shows Run Longer?
+
+Using the dataset's `TonyNominatedMusical` field, a clear difference in tracked run length emerges between Tony-flagged and non-flagged shows:
+
+| Group              | Average Tracked Weeks               |
+|--------------------|-------------------------------------|
+| Tony-flagged shows | 49.9                                |
+| Non-flagged shows  | 24.4                                |
+| **Difference**     | **\~25.5 additional tracked weeks** |
+
+Tony-flagged shows, on average, appear in the tracked dataset for approximately 25.5 more weeks than their non-flagged counterparts — roughly double the tracked run length.
+
+### Do Larger Theaters Have Higher Gross Revenue?
+
+The relationship between theater size and weekly gross revenue is clearly positive, supported by correlation analysis at two levels of granularity:
+
+| Metric | Value |
+|-------------------------------------------|-----------------------------|
+| Weekly correlation (theater seats vs. weekly gross) | 0.64 |
+| Show-level correlation (avg. theater size vs. avg. weekly gross) | 0.62 |
+| Simple linear trend | \~\$1,193 in weekly gross per additional seat |
+
+Both correlation values indicate a moderately strong positive relationship. The simple linear trend suggests that, on average, each additional seat in a theater is associated with roughly \$1,193 in additional weekly gross revenue.
+
+### Are Tony-Flagged Shows in Larger Theaters?
+
+Tony-flagged shows tend to appear in larger houses, as measured by average theater seat count:
+
+| Group              | Average Theater Seats |
+|--------------------|-----------------------|
+| Tony-flagged shows | 1,314.4               |
+| Non-flagged shows  | 988.1                 |
+| **Difference**     | **\~326.3 seats**     |
+
+On average, Tony-flagged shows occupy theaters with approximately 326 more seats than non-flagged shows, a substantial difference in venue scale.
+
+### Summary of Key Findings
+
+| Research Question | Key Metric | Tony-Flagged | Non-Flagged | Difference / Correlation |
+|-------------|-------------|-------------|-------------|--------------------|
+| Run Length | Avg. tracked weeks | 49.9 | 24.4 | +25.5 weeks |
+| Theater Size vs. Gross | Correlation (weekly) |  |  | 0.64; \~\$1,193 per seat (linear trend) |
+| Theater Size | Avg. seats | 1,314.4 | 988.1 | +326.3 seats |
+
+## Interpretation
+
+The three research questions point in the same direction: in this dataset, the Tony-related flag is associated with longer tracked runs, larger theaters, and higher weekly revenue. Tony-flagged shows run about twice as long in the tracked data, occupy theaters with over 300 additional seats on average, and — given the strong positive correlation between theater size and gross revenue — tend to generate higher weekly box office figures. That does not prove the flag causes those outcomes, but it does suggest that award-related prestige and commercial scale move together in the Broadway market represented here. The findings paint a consistent picture of Tony-flagged productions as larger-scale commercial enterprises that sustain longer runs in bigger venues.
+
+## Limitations
+
+-   **No explicit award-winning field.** The dataset does not contain a column explicitly identifying Tony Award winners. It contains a `TonyNominatedMusical` field, which may not map perfectly to "Tony award winning." Nomination and winning are distinct outcomes, and the field's scope may differ from common assumptions about award status.
+
+-   **Findings describe the flag, not causation.** All conclusions should be presented as findings about the dataset's Tony-related flag, not as definitive proof about actual award winners or the causal effects of winning a Tony Award.
+
+-   **Available signal, clearly labeled.** Because the dataset does not include a separate award-winning column, the package treats the `TonyNominatedMusical` field as the available award-related signal and labels it clearly throughout the documentation and dashboard. Users should keep this distinction in mind when drawing broader conclusions.
+
+## Conclusion
+
+Broadway Insights transforms a raw weekly-grosses dataset into a clean, analyzable resource and surfaces interpretable findings about the association between award prestige and commercial performance on Broadway. The package provides both a programmatic API — with functions for loading, cleaning, aggregating, analyzing, and visualizing the data — and an interactive Streamlit dashboard for further exploration. Whether used as a Python library or through its dashboard interface, Broadway Insights offers a reproducible, well-documented foundation for understanding the dynamics of the Broadway market captured in this dataset.
